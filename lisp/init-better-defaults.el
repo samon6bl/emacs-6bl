@@ -1,3 +1,5 @@
+;; 设置主目录
+(setq default-directory "~/Org")
 ;; 自动替换所选
 (delete-selection-mode 1)
 

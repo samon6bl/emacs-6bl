@@ -9,7 +9,7 @@
  (position . 9))
 ("org-capture-last-stored"
  (filename . "~/Org/task.org")
- (front-context-string . "** TODO 就业推荐表完成\n")
- (rear-context-string)
- (position . 9))
+ (front-context-string . "** TODO sadasd\n[")
+ (rear-context-string . "- [ ] dvipng命令行\n")
+ (position . 89))
 )

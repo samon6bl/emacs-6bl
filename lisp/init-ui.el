@@ -2,7 +2,7 @@
 
 (global-hl-line-mode 1)
 
-(load-theme 'monokai 1)
+(load-theme 'dracula 1)
 
 (provide 'init-ui)
 

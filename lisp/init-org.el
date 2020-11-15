@@ -69,5 +69,9 @@
 (executable-find "sqlite3")
 
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
+(setq org-latex-compiler "xelatex")
 
+;;设置归档目录和headline
+(setq org-archive-location "~/Org/agenda/archived.org::* Archived")

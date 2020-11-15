@@ -23,7 +23,7 @@
 			   ;; --- Major Mode ---
 			   markdown-mode
 			   ;; --- Themes ---
-			   monokai-theme
+			   dracula-theme
 			   )"Default packages")
 ;; ...
 
