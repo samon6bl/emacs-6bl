@@ -20,10 +20,29 @@
 			   smartparens
 			   popwin
 			   reveal-in-osx-finder
+			   neotree
+			   switch-window
+			   projectile
 			   ;; --- Major Mode ---
 			   markdown-mode
+			   exec-path-from-shell
+			   ;; --- Python mode ---
+			   elpy
+			   company-jedi
+			   flycheck
+			   powerline
 			   ;; --- Themes ---
 			   dracula-theme
+			   solarized-theme
+			   ;; --- Package ---
+			   use-package
+			   ;; --- Org ---
+			   org-noter
+			   let-alist
+			   tablist
+			   org-pdftools
+			   org-noter-pdftools
+			   org-superstar
 			   )"Default packages")
 ;; ...
 

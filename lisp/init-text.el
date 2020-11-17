@@ -45,5 +45,8 @@
 (require 'dired-x)
 (setq dired-dwin-target 1)
 
+;; neotree
+(global-set-key [f8] 'neotree-toggle)
+
 
 (provide 'init-text)

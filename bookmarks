@@ -8,8 +8,8 @@
  (rear-context-string)
  (position . 9))
 ("org-capture-last-stored"
- (filename . "~/Org/task.org")
- (front-context-string . "** TODO sadasd\n[")
- (rear-context-string . "- [ ] dvipng命令行\n")
- (position . 89))
+ (filename . "~/Org/agenda/task.org")
+ (front-context-string . "** TODO 打电话联系波叔\n")
+ (rear-context-string . "6 Sun>\n\n* Tasks\n")
+ (position . 449))
 )

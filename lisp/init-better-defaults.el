@@ -1,5 +1,7 @@
+(setq locale-coding-system 'utf-8)
+
 ;; 设置主目录
-(setq default-directory "~/Org")
+(setq default-directory "~/Org/")
 ;; 自动替换所选
 (delete-selection-mode 1)
 
@@ -27,5 +29,8 @@
 
 ;; 这一行代码，将函数 open-init-file 绑定到 <f2> 键上
 (global-set-key (kbd "<f2>") 'open-init-file)
+
+(setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig")
+(setenv "PATH" "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/")
 
 (provide 'init-better-defaults)

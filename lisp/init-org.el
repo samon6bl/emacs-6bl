@@ -50,19 +50,30 @@
 (add-hook 'org-agenda-finalize-hook #'ljg/org-agenda-time-grid-spacing)
 
 
+(add-hook 'org-mode-hook
+          (lambda ()
+            (org-superstar-mode 1)))
+;; This is usually the default, but keep in mind it must be nil
+(setq org-hide-leading-stars nil)
+;; This line is necessary.
+(setq org-superstar-leading-bullet ?\s)
 
 ;; org-capture 
 (global-set-key (kbd "C-c c") 'org-capture)
 (setq org-capture-templates nil)
-(add-to-list 'org-capture-templates
-             '("t" "To-do task" entry
-               (file+headline "~/Org/task.org" "Tasks")
-               "* TODO %^{Task}\n%u\n%?\n"))
+(setq org-capture-templates
+            '(("t" "To-do task" entry
+               (file+headline "~/Org/agenda/task.org" "Task List")
+               "* TODO %^{Task}\n%u\n%?\n")
+	      ("j" "Journal" entry
+	       (file+datetree "~/Org/agenda/journal.org")
+               "* %?\nEntered on %U\n%i\n")))
 
-(setq org-refile-targets (quote (("project.org" :maxlevel . 2)                                             
+(setq org-refbile-targets (quote (("project.org" :maxlevel . 2)                                             
                                  ("area.org" :maxlevel . 2)
 				 ("archived.org" :maxlevel . 2)
-				 ("task.org" :maxlevel . 2))))
+				 ("task.org" :maxlevel . 2)
+				 ("journal.org" :maxlevel . 2))))
 
 (setq org-roam-directory "~/Org/roam notes")
 (add-hook 'after-init-hook 'org-roam-mode)
@@ -70,8 +81,33 @@
 
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
-
+(setq org-latex-create-formula-image-program 'dvipng)
 (setq org-latex-compiler "xelatex")
 
 ;;设置归档目录和headline
 (setq org-archive-location "~/Org/agenda/archived.org::* Archived")
+
+(use-package org-pdftools
+  :hook (org-mode . org-pdftools-setup-link))
+
+(use-package org-noter-pdftools
+  :after org-noter
+  :config
+  (with-eval-after-load 'pdf-annot
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+
+(use-package org-noter
+  :after org
+  :ensure t)
+
+(use-package pdf-tools
+   :pin manual
+   :config
+   (pdf-tools-install)
+   (setq-default pdf-view-display-size 'fit-width)
+   (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+   :custom
+   (pdf-annot-activate-created-annotations t "automatically annotate highlights"))
+
+
+(add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
