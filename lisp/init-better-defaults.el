@@ -16,6 +16,9 @@
 (require 'popwin)
 (popwin-mode 1)
 
+;; 补全括号
+(electric-pair-mode 1)
+
 ;; 错误时警告声关闭
 (setq ring-bell-function 'ignore)
 

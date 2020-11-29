@@ -2,9 +2,19 @@
 
 (global-hl-line-mode 1)
 
-(load-theme 'dracula 1)
+(setq day-theme 'moe-light)
+(setq dark-theme 'moe-dark)
+(defun synchronize-theme ()
+    (setq hour
+        (string-to-number
+            (substring (current-time-string) 11 13)))
+    (if (member hour (number-sequence 6 18))
+        (setq now day-theme)
+        (setq now dark-theme))
+    (load-theme now)
+)
+(run-with-timer 0 3600 'synchronize-theme)
 
-(provide 'init-ui)
 
 ;; 光标
 (setq-default cursor-type 'bar)
@@ -21,4 +31,4 @@
 ;; 关闭启动帮助画面
 (setq inhibit-splash-screen 1)
 
-
+(provide 'init-ui)

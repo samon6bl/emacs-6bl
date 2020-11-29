@@ -15,11 +15,11 @@
 
 ;; 设置 todo keywords
 (setq org-todo-keywords
-      '((sequence "TODO" "HAND" "|" "DONE")))
+      '((sequence "TODO(t)" "DOING(i!)" "|" "DONE(d@/!)" "ABORT(a@/!)")))
 
 ;; 调试好久的颜色，效果超赞！todo keywords 增加背景色
 (setf org-todo-keyword-faces '(("TODO" . (:foreground "white" :background "#95A5A6"   :weight bold))
-                                ("HAND" . (:foreground "white" :background "#2E8B57"  :weight bold))
+                                ("DOING" . (:foreground "white" :background "#2E8B57"  :weight bold))
                                 ("DONE" . (:foreground "white" :background "#3498DB" :weight bold))))
 
 ;; agenda 里面时间块彩色显示
@@ -67,7 +67,7 @@
                "* TODO %^{Task}\n%u\n%?\n")
 	      ("j" "Journal" entry
 	       (file+datetree "~/Org/agenda/journal.org")
-               "* %?\nEntered on %U\n%i\n")))
+              "* %?\nEntered on %U\n%i\n")))
 
 (setq org-refbile-targets (quote (("project.org" :maxlevel . 2)                                             
                                  ("area.org" :maxlevel . 2)
@@ -78,10 +78,8 @@
 (setq org-roam-directory "~/Org/roam notes")
 (add-hook 'after-init-hook 'org-roam-mode)
 (executable-find "sqlite3")
-
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
-(setq org-latex-create-formula-image-program 'dvipng)
 (setq org-latex-compiler "xelatex")
 
 ;;设置归档目录和headline
@@ -111,3 +109,66 @@
 
 
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
+
+;; 支持中文加粗
+(setcar (nthcdr 0 org-emphasis-regexp-components) " \t('\"{[:nonascii:]")
+(setcar (nthcdr 1 org-emphasis-regexp-components) "- \t.,:!?;'\")}\\[[:nonascii:]")
+(org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+(org-element-update-syntax)
+
+(setq org-emphasis-alist
+      (cons '("+" '(:strike-through t :foreground "gray"))
+            (delete* "+" org-emphasis-alist :key 'car :test 'equal)))
+(setq org-emphasis-alist
+      (cons '("*" '(:emphasis t :foreground "pink"))
+            (delete* "*" org-emphasis-alist :key 'car :test 'equal)))
+(setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org"))
+
+(require 'elfeed-org)
+(setq elfeed-feeds
+      '("https://iseex.github.io/feed.xml"
+	"https://www.douban.com/feed/review/movie"))
+(global-set-key (kbd "C-x w") 'elfeed)
+(elfeed-org)
+
+(setq org-html-inline-image-rules
+      '(
+        ;; Travis CI 图片 URL 的尾巴有些特殊
+        ("file" . "\\.svg\\?branch=master\\'")
+        ;; 原有的值
+        ("file" . "\\.\\(jpeg\\|jpg\\|png\\|gif\\|svg\\)\\'")
+        ("http" . "\\.\\(jpeg\\|jpg\\|png\\|gif\\|svg\\)\\'")
+        ("https" . "\\.\\(jpeg\\|jpg\\|png\\|gif\\|svg\\)\\'")))
+(auto-image-file-mode t) 
+
+
+;; Drag-and-drop to `dired`
+(add-hook 'dired-mode-hook 'org-download-enable)
+
+
+;; emacs字体设置
+(let ((emacs-font-size 14)
+      (emacs-font-name "Sarasa Gothic SC"))
+  (set-frame-font (format "%s-%s" (eval emacs-font-name) (eval emacs-font-size)))
+  (set-fontset-font (frame-parameter nil 'font) 'unicode (eval emacs-font-name)))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-table ((t (:foreground "#6c71c4" :family "Sarasa Mono SC")))))
+
+(with-eval-after-load 'org
+  (defun org-buffer-face-mode-variable ()
+    (interactive)
+    (make-face 'width-font-face)
+    (set-face-attribute 'width-font-face nil :font "Sarasa Gothic SC")
+    (setq buffer-face-mode-face 'width-font-face)
+    (buffer-face-mode))
+
+(add-hook 'org-mode-hook 'org-buffer-face-mode-variable))
+
+;;org latex包设置--中文显示
+ (setq org-latex-packages-alist
+      '(("fontset=macnew,UTF8" "ctex" t)))

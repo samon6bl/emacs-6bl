@@ -15,14 +15,14 @@
 			   ;; --- Better Editor ---
 			   smooth-scrolling
 			   hungry-delete
-			   swiper
-			   counsel
 			   smartparens
 			   popwin
 			   reveal-in-osx-finder
 			   neotree
 			   switch-window
+                           ranger
 			   projectile
+			   super-save
 			   ;; --- Major Mode ---
 			   markdown-mode
 			   exec-path-from-shell
@@ -34,15 +34,26 @@
 			   ;; --- Themes ---
 			   dracula-theme
 			   solarized-theme
+			   moe-theme
 			   ;; --- Package ---
 			   use-package
+                           browse-kill-ring
+			   names
+			   async
+			   all-the-icons
+			   all-the-icons-dired
 			   ;; --- Org ---
+                           define-word
+			   deft
 			   org-noter
 			   let-alist
 			   tablist
 			   org-pdftools
 			   org-noter-pdftools
 			   org-superstar
+			   elfeed-org
+			   youdao-dictionary
+			   helm
 			   )"Default packages")
 ;; ...
 

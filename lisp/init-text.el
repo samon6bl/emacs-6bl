@@ -14,6 +14,9 @@
 	(message "Indent buffer.")))))
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
 
+;; icons for dried
+(use-package all-the-icons)
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 ; 开启全局 Company 补全
 (global-company-mode 1)
@@ -47,6 +50,31 @@
 
 ;; neotree
 (global-set-key [f8] 'neotree-toggle)
+
+;; kill-ring 快捷键
+(global-set-key "\C-cy" 'browse-kill-ring)
+
+(use-package super-save
+  :ensure t
+  :config
+  (super-save-mode +1))
+
+;; Enable Cache
+(setq url-automatic-caching t)
+
+;; Example Key binding
+(global-set-key (kbd "C-c f") 'youdao-dictionary-search-at-point)
+
+;; Integrate with popwin-el (https://github.com/m2ym/popwin-el)
+;;(push "*Youdao Dictionary*" popwin:special-display-config)
+
+;; Set file path for saving search history
+ (setq youdao-dictionary-search-history-file "~/.emacs.d/.youdao")
+
+(helm-mode 1)
+(global-set-key (kbd "M-x") #'helm-M-x)
+(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
 
 
 (provide 'init-text)
