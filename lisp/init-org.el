@@ -67,16 +67,36 @@
                "* TODO %^{Task}\n%u\n%?\n")
 	      ("j" "Journal" entry
 	       (file+datetree "~/Org/agenda/journal.org")
-              "* %?\nEntered on %U\n%i\n")))
+               "* %?\nEntered on %U\n%i\n")
+	      ("i" "Idea" entry
+	       (file+headline "~/Org/agenda/inbox.org" "Idea")
+	       "* %^{Idea}\nEnered on%T\n%?\n")
+	      ("n" "Note" entry
+	       (file+headline "~/Org/agenda/inbox.org" "Notes")
+	       "* %^{Note}\n%?\nEnered on%U\n%a")))
 
-(setq org-refbile-targets (quote (("project.org" :maxlevel . 2)                                             
+(setq org-refile-targets (quote (("project.org" :maxlevel . 2)                                             
                                  ("area.org" :maxlevel . 2)
 				 ("archived.org" :maxlevel . 2)
 				 ("task.org" :maxlevel . 2)
 				 ("journal.org" :maxlevel . 2))))
+;; Org-roam
+(use-package org-roam
+      :ensure t
+      :hook
+      (after-init . org-roam-mode)
+      :custom
+      (org-roam-directory "~/Org/roam notes/")
+      :bind (:map org-roam-mode-map
+              (("C-c n l" . org-roam)
+               ("C-c n f" . org-roam-find-file)
+               ("C-c n g" . org-roam-graph))
+              :map org-mode-map
+              (("C-c n i" . org-roam-insert))
+              (("C-c n I" . org-roam-insert-immediate))))
 
-(setq org-roam-directory "~/Org/roam notes")
-(add-hook 'after-init-hook 'org-roam-mode)
+(setq org-roam-completion-system 'helm)
+
 (executable-find "sqlite3")
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
@@ -147,23 +167,17 @@
 
 
 ;; emacs字体设置
-(let ((emacs-font-size 14)
-      (emacs-font-name "Sarasa Gothic SC"))
+(let ((emacs-font-size 16)
+      (emacs-font-name "Sarasa Mono SC"))
   (set-frame-font (format "%s-%s" (eval emacs-font-name) (eval emacs-font-size)))
   (set-fontset-font (frame-parameter nil 'font) 'unicode (eval emacs-font-name)))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-table ((t (:foreground "#6c71c4" :family "Sarasa Mono SC")))))
 
 (with-eval-after-load 'org
   (defun org-buffer-face-mode-variable ()
     (interactive)
     (make-face 'width-font-face)
-    (set-face-attribute 'width-font-face nil :font "Sarasa Gothic SC")
+    (set-face-attribute 'width-font-face nil :font "Sarasa Mono SC")
     (setq buffer-face-mode-face 'width-font-face)
     (buffer-face-mode))
 
@@ -172,3 +186,13 @@
 ;;org latex包设置--中文显示
  (setq org-latex-packages-alist
       '(("fontset=macnew,UTF8" "ctex" t)))
+
+;; default options for all output formats
+(setq org-pandoc-options '((standalone . t)))
+;; cancel above settings only for 'docx' format
+(setq org-pandoc-options-for-docx '((standalone . nil)))
+;; special settings for beamer-pdf and latex-pdf exporters
+(setq org-pandoc-options-for-beamer-pdf '((pdf-engine . "xelatex")))
+(setq org-pandoc-options-for-latex-pdf '((pdf-engine . "pdflatex")))
+;; special extensions for markdown_github output
+(setq org-pandoc-format-extensions '(markdown_github+pipe_tables+raw_html))

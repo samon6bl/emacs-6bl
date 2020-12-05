@@ -37,12 +37,14 @@
 			   moe-theme
 			   ;; --- Package ---
 			   use-package
-                           browse-kill-ring
 			   names
 			   async
 			   all-the-icons
 			   all-the-icons-dired
 			   ;; --- Org ---
+			   org-roam
+			   org-roam-bibtex
+			   org-roam-server
                            define-word
 			   deft
 			   org-noter
@@ -54,6 +56,7 @@
 			   elfeed-org
 			   youdao-dictionary
 			   helm
+			   ox-pandoc
 			   )"Default packages")
 ;; ...
 
