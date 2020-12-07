@@ -42,6 +42,8 @@
 			   all-the-icons
 			   all-the-icons-dired
 			   ;; --- Org ---
+			   org-download
+			   org-ref
 			   org-roam
 			   org-roam-bibtex
 			   org-roam-server

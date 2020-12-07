@@ -62,18 +62,21 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (setq org-capture-templates nil)
 (setq org-capture-templates
-            '(("t" "To-do task" entry
+            '(("d" "To-do task" entry
                (file+headline "~/Org/agenda/task.org" "Task List")
                "* TODO %^{Task}\n%u\n%?\n")
 	      ("j" "Journal" entry
 	       (file+datetree "~/Org/agenda/journal.org")
                "* %?\nEntered on %U\n%i\n")
 	      ("i" "Idea" entry
-	       (file+headline "~/Org/agenda/inbox.org" "Idea")
+	       (file+headline "~/Org/agenda/Idea.org" "Idea")
 	       "* %^{Idea}\nEnered on%T\n%?\n")
 	      ("n" "Note" entry
 	       (file+headline "~/Org/agenda/inbox.org" "Notes")
-	       "* %^{Note}\n%?\nEnered on%U\n%a")))
+	       "* %^{Note}\n%?\nEnered on%U\n%a")
+	      ("t" "tips" entry
+	       (file+headline "~/Org/agenda/Tips.org" "Tips")
+	       "* %? %^G\nEnered on %T\n")))
 
 (setq org-refile-targets (quote (("project.org" :maxlevel . 2)                                             
                                  ("area.org" :maxlevel . 2)
@@ -94,8 +97,22 @@
               :map org-mode-map
               (("C-c n i" . org-roam-insert))
               (("C-c n I" . org-roam-insert-immediate))))
-
+(setq org-roam-server-host "127.0.0.1"
+      org-roam-server-port 9090
+      org-roam-server-export-inline-images t
+      org-roam-server-authenticate nil
+      org-roam-server-network-label-truncate t
+      org-roam-server-network-label-truncate-length 60
+      org-roam-server-network-label-wrap-length 20)
+(org-roam-server-mode)
+(require 'org-roam-protocol)
 (setq org-roam-completion-system 'helm)
+(add-to-list 'org-roam-capture-ref-templates
+             '("r" "ref" plain (function org-roam-capture--get-point)
+               ""
+               :file-name "${slug}"
+               :head "#+title: ${title}\n#+roam_key: ${ref}\n"
+               :unnarrowed t))
 
 (executable-find "sqlite3")
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
@@ -163,8 +180,15 @@
 
 
 ;; Drag-and-drop to `dired`
-(add-hook 'dired-mode-hook 'org-download-enable)
 
+(add-hook 'dired-mode-hook 'org-download-enable)
+(setq-default org-download-image-dir "~/Pictures/org/")
+(use-package org-download
+  :after org
+  :bind
+  (:map org-mode-map
+        (("s-Y" . org-download-screenshot)
+         ("s-y" . org-download-clipboard))))
 
 ;; emacs字体设置
 (let ((emacs-font-size 16)
@@ -196,3 +220,5 @@
 (setq org-pandoc-options-for-latex-pdf '((pdf-engine . "pdflatex")))
 ;; special extensions for markdown_github output
 (setq org-pandoc-format-extensions '(markdown_github+pipe_tables+raw_html))
+
+

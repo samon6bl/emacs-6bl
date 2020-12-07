@@ -91,8 +91,8 @@
        ((:url . "http://elpa.gnu.org/packages/all.html")
 	(:keywords "matching")
 	(:authors
-	 ("Per Abrahamsen" . "abraham@dina.kvl.dk"))
-	(:maintainer "Per Abrahamsen" . "abraham@dina.kvl.dk"))])
+	 ("Per Abrahamsen" . "per.abrahamsen@gmail.com"))
+	(:maintainer "Per Abrahamsen" . "per.abrahamsen@gmail.com"))])
  (ampc .
        [(0 2)
 	nil "Asynchronous Music Player Controller" single
@@ -392,11 +392,11 @@
 		      ("Jackson Ray Hamilton" . "jackson@jacksonrayhamilton.com"))
 		     (:keywords "convenience" "faces" "tools"))])
  (counsel .
-	  [(0 12 0)
+	  [(0 13 1)
 	   ((emacs
-	     (24 3))
+	     (24 5))
 	    (swiper
-	     (0 12 0)))
+	     (0 13 1)))
 	   "Various completion functions using Ivy" tar
 	   ((:url . "https://github.com/abo-abo/swiper")
 	    (:maintainer "Oleh Krehel" . "ohwoeowho@gmail.com")

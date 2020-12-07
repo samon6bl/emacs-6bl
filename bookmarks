@@ -8,8 +8,8 @@
  (rear-context-string . "020-11-30 Mon]\n\n")
  (position . 638))
 ("org-capture-last-stored"
- (filename . "~/Org/agenda/task.org")
- (front-context-string . "** TODO [#A] 各种财")
- (rear-context-string . "- [ ] 看一下Ethics\n")
- (position . 608))
+ (filename . "~/Org/roam notes/使用_org_roam_构建自己的知识网络_zmonster_s_blog.org")
+ (front-context-string . "[2020-12-07 Mon ")
+ (rear-context-string . "-roam 构建自己的知识网络\n")
+ (position . 220))
 )

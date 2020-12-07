@@ -1,7 +1,7 @@
 (setq locale-coding-system 'utf-8)
 
 ;; 设置主目录
-(setq default-directory "~/Org/")
+(setq default-directory "~/Org/roam notes")
 ;; 自动替换所选
 (delete-selection-mode 1)
 
