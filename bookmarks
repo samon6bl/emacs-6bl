@@ -2,14 +2,19 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("org-refile-last-stored"
- (filename . "~/Org/agenda/task.org")
- (front-context-string . "** TODO [#A] CFA")
- (rear-context-string . "020-11-30 Mon]\n\n")
- (position . 638))
+(("org-capture-last-stored-marker"
+ (filename . "~/Org/agenda/project.org")
+ (front-context-string . "*** TODO Wind导出可")
+ (rear-context-string . "THOR: 刘博伦\n:END:\n")
+ (position . 186))
+("org-refile-last-stored"
+ (filename . "~/Org/agenda/project.org")
+ (front-context-string . "*** TODO Wind导出可")
+ (rear-context-string . "THOR: 刘博伦\n:END:\n")
+ (position . 186))
 ("org-capture-last-stored"
  (filename . "~/Org/roam notes/使用_org_roam_构建自己的知识网络_zmonster_s_blog.org")
  (front-context-string . "[2020-12-07 Mon ")
- (rear-context-string . "-roam 构建自己的知识网络\n")
- (position . 220))
+ (rear-context-string . "troduction.html\n")
+ (position . 124))
 )

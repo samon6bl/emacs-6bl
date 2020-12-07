@@ -62,21 +62,33 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (setq org-capture-templates nil)
 (setq org-capture-templates
-            '(("d" "To-do task" entry
-               (file+headline "~/Org/agenda/task.org" "Task List")
-               "* TODO %^{Task}\n%u\n%?\n")
-	      ("j" "Journal" entry
+             '(("t" "Task")
+	       ("td" "To-do task" entry 
+               (file+headline "~/Org/agenda/task.org" "Task List") 
+                "* TODO %^{Task}\n%T\n%?\n")
+	       ("tp" "tips" entry
+	       (file+headline "~/Org/agenda/Tips.org" "Tips")
+	       "* %? %^G\nEnered on %T\n")
+	       ("r" "Resourcee")
+	       ("ra" "Resource" table-line
+		(file+headline "~/Org/agenda/inbox.org" "Resource")
+		"|%^{Title}|%^{Category}|%^{Method}|%^C|" :kill-buffer t)
+	       ("rl" "To reading list" table-line
+		(file+headline "~/Org/agenda/resource.org" "Reading list")
+		"|%^{Tile}|%^{Author}|%^{Category}|%^{Score}|%^{When to read}|" :kill-buffer t)
+	       ("j" "Journal" entry
 	       (file+datetree "~/Org/agenda/journal.org")
-               "* %?\nEntered on %U\n%i\n")
-	      ("i" "Idea" entry
+                "* %?\nEntered on %U\n%i\n")
+	       ("i" "Idea" entry
 	       (file+headline "~/Org/agenda/Idea.org" "Idea")
-	       "* %^{Idea}\nEnered on%T\n%?\n")
-	      ("n" "Note" entry
+	        "* %^{Idea}\nEnered on%T\n%?\n")
+	       ("n" "Note" entry
 	       (file+headline "~/Org/agenda/inbox.org" "Notes")
 	       "* %^{Note}\n%?\nEnered on%U\n%a")
-	      ("t" "tips" entry
-	       (file+headline "~/Org/agenda/Tips.org" "Tips")
-	       "* %? %^G\nEnered on %T\n")))
+	       ("w" "Web site" entry
+               (file+headline "~/Org/agenda/inbox.org" "Resource")
+               "* %a :website:\n\n%U %?\n\n%:initial")))
+
 
 (setq org-refile-targets (quote (("project.org" :maxlevel . 2)                                             
                                  ("area.org" :maxlevel . 2)
@@ -105,13 +117,15 @@
       org-roam-server-network-label-truncate-length 60
       org-roam-server-network-label-wrap-length 20)
 (org-roam-server-mode)
+(server-start)
 (require 'org-roam-protocol)
 (setq org-roam-completion-system 'helm)
 (add-to-list 'org-roam-capture-ref-templates
-             '("r" "ref" plain (function org-roam-capture--get-point)
-               ""
+             '("a" "Annotation" plain (function org-roam-capture--get-point)
+               "%U ${body}\n"
                :file-name "${slug}"
-               :head "#+title: ${title}\n#+roam_key: ${ref}\n"
+               :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
+               :immediate-finish t
                :unnarrowed t))
 
 (executable-find "sqlite3")

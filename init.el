@@ -10,6 +10,7 @@
 (require 'init-python)
 (require 'org-tempo)
 (require 'posframe)
+(require 'org-protocol-capture-html)
 
 
 
