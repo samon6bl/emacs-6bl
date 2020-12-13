@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/" "~/学习区/logseq/")
+("~/.emacs.d/" "~/" "~/blog/samon/themes/even/" "~/学习区/logseq/")

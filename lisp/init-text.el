@@ -93,3 +93,8 @@
       helm-ff-file-name-history-use-recentf t)
 
 (provide 'init-text)
+
+(add-hook 'org-mode-hook
+	  (lambda()
+	    (setq truncate-lines nil)))
+

@@ -59,6 +59,7 @@
 			   youdao-dictionary
 			   helm
 			   ox-pandoc
+			   ox-hugo
 			   )"Default packages")
 ;; ...
 

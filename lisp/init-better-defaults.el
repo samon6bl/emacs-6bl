@@ -1,7 +1,7 @@
 (setq locale-coding-system 'utf-8)
 
 ;; 设置主目录
-(setq default-directory "~/Org/roam notes")
+(setq default-directory "~/Org/")
 ;; 自动替换所选
 (delete-selection-mode 1)
 
@@ -35,5 +35,10 @@
 
 (setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig")
 (setenv "PATH" "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/")
+
+(winner-mode +1)
+(define-key winner-mode-map (kbd "<M-left>") #'winner-undo)
+(define-key winner-mode-map (kbd "<M-right>") #'winner-redo)
+
 
 (provide 'init-better-defaults)

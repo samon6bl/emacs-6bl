@@ -18,7 +18,10 @@
     (setq jedi:environment-root "jedi")))
 
 ;; enable python插件
-(elpy-enable)
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
 
 
 
@@ -43,5 +46,9 @@
                 (neotree-dir project-dir)
                 (neotree-find file-name)))
         (message "Could not find git project root."))))
+
+
+(setq python-shell-completion-native-enable nil)
+
 
 (provide 'init-python)

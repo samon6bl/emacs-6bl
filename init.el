@@ -27,6 +27,8 @@
    '("27a1dd6378f3782a593cc83e108a35c2b93e5ecc3bd9057313e1d88462701fcd" "eb3ef63dc31fbebb37df3646fbc1e07f25159d19bb1cade2a80000a2764690de" "0feb7052df6cfc1733c1087d3876c26c66410e5f1337b039be44cb406b6187c6" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" default))
  '(elfeed-feeds
    '("https://rsshub.ioiox.com/bilibili/bangumi/media/28229899"))
+ '(org-agenda-files
+   '("~/Org/roam notes/TODO.org" "/Users/apple/org/agenda/Idea.org" "/Users/apple/org/agenda/Tips.org" "/Users/apple/org/agenda/archived.org" "/Users/apple/org/agenda/area.org" "/Users/apple/org/agenda/inbox.org" "/Users/apple/org/agenda/journal.org" "/Users/apple/org/agenda/project.org" "/Users/apple/org/agenda/resource.org" "/Users/apple/org/agenda/task.org"))
  '(org-download-screenshot-method "screencapture -i %s")
  '(org-format-latex-options
    '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers

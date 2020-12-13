@@ -94,7 +94,8 @@
                                  ("area.org" :maxlevel . 2)
 				 ("archived.org" :maxlevel . 2)
 				 ("task.org" :maxlevel . 2)
-				 ("journal.org" :maxlevel . 2))))
+				 ("journal.org" :maxlevel . 2)
+				 ("inbox.org" :maxlevel . 2))))
 ;; Org-roam
 (use-package org-roam
       :ensure t
@@ -108,7 +109,9 @@
                ("C-c n g" . org-roam-graph))
               :map org-mode-map
               (("C-c n i" . org-roam-insert))
-              (("C-c n I" . org-roam-insert-immediate))))
+              (("C-c n I" . org-roam-insert-immediate))
+	      (("C-c n t" . org-roam-dailies-today))
+	      (("C-c n c" . org-roam-dailies-capture-today))))
 (setq org-roam-server-host "127.0.0.1"
       org-roam-server-port 9090
       org-roam-server-export-inline-images t
@@ -127,6 +130,23 @@
                :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
                :immediate-finish t
                :unnarrowed t))
+(setq org-roam-dailies-directory "~/Org/roam notes/Daily/")
+(setq org-roam-dailies-capture-templates
+      '(("l" "lab" entry
+         #'org-roam-capture--get-point
+         "* %?"
+         :file-name "~/Org/roam notes/Daily/%<%Y-%m-%d>"
+         :head "#+title: %<%Y-%m-%d>\n"
+         :olp ("Lab notes"))
+
+        ("j" "journal" entry
+         #'org-roam-capture--get-point
+         "* %?"
+         :file-name "~/Org/roam notes/Daily/%<%Y-%m-%d>"
+         :head "#+title: %<%Y-%m-%d>\n"
+         :olp ("Journal"))))
+
+
 
 (executable-find "sqlite3")
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
