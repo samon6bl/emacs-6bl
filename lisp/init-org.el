@@ -2,7 +2,7 @@
 (setq org-src-fontify-natively t)
 
 ;; 设置默认 Org Agenda 文件目录
-(setq org-agenda-files '("~/org/agenda"))
+(setq org-agenda-files '("~/Nextcloud/agenda"))
 
 ;; 设置 org-agenda 打开快捷键
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -22,32 +22,6 @@
                                 ("DOING" . (:foreground "white" :background "#2E8B57"  :weight bold))
                                 ("DONE" . (:foreground "white" :background "#3498DB" :weight bold))))
 
-;; agenda 里面时间块彩色显示
-;; From: https://emacs-china.org/t/org-agenda/8679/3
-(defun ljg/org-agenda-time-grid-spacing ()
-  "Set different line spacing w.r.t. time duration."
-  (save-excursion
-    (let* ((background (alist-get 'background-mode (frame-parameters)))
-           (background-dark-p (string= background "dark"))
-           (colors (list "#1ABC9C" "#2ECC71" "#3498DB" "#9966ff"))
-           pos
-           duration)
-      (nconc colors colors)
-      (goto-char (point-min))
-      (while (setq pos (next-single-property-change (point) 'duration))
-        (goto-char pos)
-        (when (and (not (equal pos (point-at-eol)))
-                   (setq duration (org-get-at-bol 'duration)))
-          (let ((line-height (if (< duration 30) 1.0 (+ 0.5 (/ duration 60))))
-                (ov (make-overlay (point-at-bol) (1+ (point-at-eol)))))
-            (overlay-put ov 'face `(:background ,(car colors)
-                                                :foreground
-                                                ,(if background-dark-p "black" "white")))
-            (setq colors (cdr colors))
-            (overlay-put ov 'line-height line-height)
-            (overlay-put ov 'line-spacing (1- line-height))))))))
-
-(add-hook 'org-agenda-finalize-hook #'ljg/org-agenda-time-grid-spacing)
 
 
 (add-hook 'org-mode-hook
@@ -64,29 +38,29 @@
 (setq org-capture-templates
              '(("t" "Task")
 	       ("td" "To-do task" entry 
-               (file+headline "~/Org/agenda/task.org" "Task List") 
-                "* TODO %^{Task}\n%T\n%?\n")
+               (file+headline "~/Nextcloud/agenda/task.org" "Task List") 
+                "* TODO %^{Task}\n%t\n%?\n")
 	       ("tp" "tips" entry
-	       (file+headline "~/Org/agenda/Tips.org" "Tips")
+	       (file+headline "~/Nextcloud/agenda/Tips.org" "Tips")
 	       "* %? %^G\nEnered on %T\n")
 	       ("r" "Resourcee")
 	       ("ra" "Resource" table-line
-		(file+headline "~/Org/agenda/inbox.org" "Resource")
+		(file+headline "~/Nextcloud/agenda/inbox.org" "Resource")
 		"|%^{Title}|%^{Category}|%^{Method}|%^C|" :kill-buffer t)
 	       ("rl" "To reading list" table-line
-		(file+headline "~/Org/agenda/resource.org" "Reading list")
+		(file+headline "~/Nextcloud/agenda/resource.org" "Reading list")
 		"|%^{Tile}|%^{Author}|%^{Category}|%^{Score}|%^{When to read}|" :kill-buffer t)
 	       ("j" "Journal" entry
-	       (file+datetree "~/Org/agenda/journal.org")
+	       (file+datetree "~/Nextcloud/agenda/journal.org")
                 "* %?\nEntered on %U\n%i\n")
 	       ("i" "Idea" entry
-	       (file+headline "~/Org/agenda/Idea.org" "Idea")
+	       (file+headline "~/Nextcloud/agenda/Idea.org" "Idea")
 	        "* %^{Idea}\nEnered on%T\n%?\n")
 	       ("n" "Note" entry
-	       (file+headline "~/Org/agenda/inbox.org" "Notes")
+	       (file+headline "~/Nextcloud/agenda/inbox.org" "Notes")
 	       "* %^{Note}\n%?\nEnered on%U\n%a")
 	       ("w" "Web site" entry
-               (file+headline "~/Org/agenda/inbox.org" "Resource")
+               (file+headline "~/Nextcloud/roam notes/20201219222415-material.org" "Material")
                "* %a :website:\n\n%U %?\n\n%:initial")))
 
 
@@ -102,7 +76,7 @@
       :hook
       (after-init . org-roam-mode)
       :custom
-      (org-roam-directory "~/Org/roam notes/")
+      (org-roam-directory "~/Nextcloud/roam notes/")
       :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
@@ -130,22 +104,30 @@
                :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
                :immediate-finish t
                :unnarrowed t))
-(setq org-roam-dailies-directory "~/Org/roam notes/Daily/")
+(setq org-roam-dailies-directory "~/Nextcloud/roam notes/Daily/")
 (setq org-roam-dailies-capture-templates
       '(("l" "lab" entry
          #'org-roam-capture--get-point
          "* %?"
-         :file-name "~/Org/roam notes/Daily/%<%Y-%m-%d>"
+         :file-name "~/Nextcloud/roam notes/Daily/%<%Y-%m-%d>"
          :head "#+title: %<%Y-%m-%d>\n"
          :olp ("Lab notes"))
-
         ("j" "journal" entry
          #'org-roam-capture--get-point
          "* %?"
-         :file-name "~/Org/roam notes/Daily/%<%Y-%m-%d>"
+         :file-name "~/Nextcloud/roam notes/Daily/%<%Y-%m-%d>"
          :head "#+title: %<%Y-%m-%d>\n"
-         :olp ("Journal"))))
+         :olp ("journal"))))
 
+;;设置归档目录和headline
+(setq org-archive-location "~/Nextcloud/agenda/archived.org::date-tree")
+(with-eval-after-load 'org
+  ;; ... bunch of other org configurations ...
+  ;; Org-transclusion
+  (define-key global-map (kbd "<f12>") #'org-transclusion-mode))
+
+;; ... other configurations ...
+(add-hook 'org-mode-hook (lambda () (load-file "~/.emacs.d/lisp/org-transclusion.el")))
 
 
 (executable-find "sqlite3")
@@ -153,11 +135,9 @@
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 (setq org-latex-compiler "xelatex")
 
-;;设置归档目录和headline
-(setq org-archive-location "~/Org/agenda/archived.org::* Archived")
 
-(use-package org-pdftools
-  :hook (org-mode . org-pdftools-setup-link))
+
+(use-package org-pdftools  :hook (org-mode . org-pdftools-setup-link))
 
 (use-package org-noter-pdftools
   :after org-noter
@@ -221,8 +201,8 @@
   :after org
   :bind
   (:map org-mode-map
-        (("s-Y" . org-download-screenshot)
-         ("s-y" . org-download-clipboard))))
+        (("C-c D" . org-download-screenshot)
+         ("C-c d" . org-download-clipboard))))
 
 ;; emacs字体设置
 (let ((emacs-font-size 16)
@@ -230,6 +210,7 @@
   (set-frame-font (format "%s-%s" (eval emacs-font-name) (eval emacs-font-size)))
   (set-fontset-font (frame-parameter nil 'font) 'unicode (eval emacs-font-name)))
 
+(global-set-key (kbd "C-c l") 'org-store-link)
 
 (with-eval-after-load 'org
   (defun org-buffer-face-mode-variable ()
@@ -256,3 +237,16 @@
 (setq org-pandoc-format-extensions '(markdown_github+pipe_tables+raw_html))
 
 
+(org-babel-do-load-languages
+      'org-babel-load-languages
+      '((emacs-lisp . t)
+        (ruby . t)
+        (python . t)
+        (latex . t)
+        (plantuml . t)
+        (R . t)))
+
+(require 'beancount)
+(add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
+
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))

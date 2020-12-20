@@ -1,0 +1,6 @@
+#+AUTHOR: "Samon"
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-bigblow.setup
+#+HUGO_SECTION:posts
+#+HUGO_BASE_DIR:~/blog/Samon's Blog
+#+KATEX: true
+#+OPTIONS: toc:t

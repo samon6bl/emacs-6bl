@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# key: Morning
+# name: Morning journal
+# --
+Morning journal 
+*** I am grateful for
+
+*** What would make today great?
+
+*** What [[file:~/Nextcloud/roam notes/TODO.org][TODO]] i want to do?
+- [ ]
+
+*** What ONE Thing must I accomplish today?

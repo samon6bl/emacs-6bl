@@ -64,6 +64,7 @@
 
 ;; Example Key binding
 (global-set-key (kbd "C-c f") 'youdao-dictionary-search-at-point)
+(global-set-key (kbd "C-c C-f") 'youdao-dictionary-search-from-input)
 
 ;; Integrate with popwin-el (https://github.com/m2ym/popwin-el)
 ;;(push "*Youdao Dictionary*" popwin:special-display-config)
@@ -98,3 +99,9 @@
 	  (lambda()
 	    (setq truncate-lines nil)))
 
+(use-package yasnippet
+  :ensure t
+  :init
+  (yas-global-mode 1)
+  :config
+  (add-to-list 'yas-snippet-dirs (locate-user-emacs-file "~/.emacs.d/snippets")))

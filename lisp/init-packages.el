@@ -41,12 +41,15 @@
 			   async
 			   all-the-icons
 			   all-the-icons-dired
+			   yasnippet
 			   ;; --- Org ---
 			   org-download
 			   org-ref
 			   org-roam
 			   org-roam-bibtex
 			   org-roam-server
+			   org-super-agenda
+			   helm-org-rifle
                            define-word
 			   deft
 			   org-noter
@@ -60,6 +63,7 @@
 			   helm
 			   ox-pandoc
 			   ox-hugo
+			   esup
 			   )"Default packages")
 ;; ...
 

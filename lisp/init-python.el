@@ -1,4 +1,7 @@
 (powerline-default-theme)
+
+(setq python-python-command "/opt/anaconda3/bin/python")
+
 (use-package company-jedi
   :ensure t
   :init
@@ -14,6 +17,8 @@
     (setq jedi:use-shortcuts t)
     ;; 补全列表循环
     (setq company-selection-wrap-around t)
+    ;; 补全列表左右对齐
+    (setq company-tooltip-align-annotations t)
     ;; 虚拟环境
     (setq jedi:environment-root "jedi")))
 
@@ -24,28 +29,6 @@
   (elpy-enable))
 
 
-
-;;设置切换窗口为a-z
-(setq switch-window-shortcut-style 'qwerty)
-(global-set-key (kbd "C-x o") 'switch-window)
-;;projectilep配置
-(projectile-mode +1)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-;;neotree配置
-(setq neo-smart-open t)
-(setq projectile-switch-project-action 'neotree-projectile-action)
-  (defun neotree-project-dir ()
-    "Open NeoTree using the git root."
-    (interactive)
-    (let ((project-dir (projectile-project-root))
-          (file-name (buffer-file-name)))
-      (neotree-toggle)
-      (if project-dir
-          (if (neo-global--window-exists-p)
-              (progn
-                (neotree-dir project-dir)
-                (neotree-find file-name)))
-        (message "Could not find git project root."))))
 
 
 (setq python-shell-completion-native-enable nil)

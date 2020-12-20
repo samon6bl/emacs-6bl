@@ -3,23 +3,24 @@ Connection: keep-alive
 Content-Length: 1599
 Server: GitHub.com
 Content-Type: application/octet-stream
-Last-Modified: Fri, 27 Nov 2020 07:21:44 GMT
+X-Origin-Cache: HIT
+Last-Modified: Thu, 17 Dec 2020 12:16:03 GMT
 Access-Control-Allow-Origin: *
-ETag: "5fc0a908-63f"
-Expires: Sun, 13 Dec 2020 09:14:58 GMT
+ETag: "5fdb4c03-63f"
+Expires: Sat, 19 Dec 2020 15:12:46 GMT
 Cache-Control: max-age=600
 X-Proxy-Cache: MISS
-X-GitHub-Request-Id: C182:5C1A:C1280:F4511:5FD5D93A
+X-GitHub-Request-Id: FDF0:02D5:41ED66:51179D:5FDE1615
 Accept-Ranges: bytes
-Date: Sun, 13 Dec 2020 10:18:50 GMT
+Date: Sat, 19 Dec 2020 16:10:31 GMT
 Via: 1.1 varnish
 Age: 0
-X-Served-By: cache-hkg17931-HKG
-X-Cache: MISS
-X-Cache-Hits: 0
-X-Timer: S1607854730.999527,VS0,VE229
+X-Served-By: cache-hkg17932-HKG
+X-Cache: HIT
+X-Cache-Hits: 1
+X-Timer: S1608394231.174230,VS0,VE231
 Vary: Accept-Encoding
-X-Fastly-Request-ID: bc66f63af0feff9ba7f468494cb194a291abbc1b
+X-Fastly-Request-ID: b5471b4deec04897336b98660ad81d16e7e88170
 
 # -*- mode: org; -*-
 

@@ -2,19 +2,9 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("org-capture-last-stored-marker"
- (filename . "~/Org/agenda/project.org")
- (front-context-string . "*** TODO Wind导出可")
- (rear-context-string . "THOR: 刘博伦\n:END:\n")
- (position . 186))
-("org-refile-last-stored"
- (filename . "~/Org/agenda/task.org")
- (front-context-string . "** TODO Wind导出可转")
- (rear-context-string . "tup\n* Task List\n")
- (position . 93))
-("org-capture-last-stored"
- (filename . "~/Org/agenda/Tips.org")
- (front-context-string . "** Hugo主题       ")
- (rear-context-string . "2-13 Sun 13:06>\n")
- (position . 112))
+(("12.beancount"
+ (filename . "~/Nextcloud/Account/txs/2020/12.beancount")
+ (front-context-string)
+ (rear-context-string . "Open-Balances\n  ")
+ (position . 386))
 )
