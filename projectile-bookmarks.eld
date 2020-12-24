@@ -1,1 +1,1 @@
-("~/" "~/.emacs.d/" "~/Nextcloud/Account/" "~/blog/Samon's Blog/" "~/学习区/logseq/")
+("~/.emacs.d/" "~/" "~/blog/Samon's Blog/themes/hugo-coder/" "~/blog/Samon's Blog/" "~/Nextcloud/Account/" "~/学习区/logseq/")

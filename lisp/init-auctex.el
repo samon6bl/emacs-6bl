@@ -7,7 +7,7 @@
 ;; 如果是 windows 系统，则需要 MikTeX.
 (if (string-equal system-type "windows-nt")
   (require 'tex-mik))
-  
+
 ;; 默认情况下，编译的时候总是假定正在编译的 tex 文件为主文件，如果去掉下面这行的注释，
 ;; 则在每次编译时都会询问哪一个 tex 文件是主文件。
 (setq-default TeX-master nil) ; Query for master file.

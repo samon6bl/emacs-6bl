@@ -35,6 +35,8 @@
 			   dracula-theme
 			   solarized-theme
 			   moe-theme
+			   helm-themes
+			   doom-themes
 			   ;; --- Package ---
 			   use-package
 			   names

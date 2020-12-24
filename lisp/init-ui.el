@@ -2,6 +2,7 @@
 
 (global-hl-line-mode 1)
 
+;; 日夜自动切换主题
 (setq day-theme 'moe-light)
 (setq dark-theme 'moe-dark)
 (defun synchronize-theme ()
