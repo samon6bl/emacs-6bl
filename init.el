@@ -28,6 +28,8 @@
  '(elfeed-feeds
    '("https://rsshub.ioiox.com/bilibili/bangumi/media/28229899" "https://samon6bl.github.io/rss.xml"))
  '(helm-completion-style 'emacs)
+ '(org-agenda-files
+   '("~/Nextcloud/roam notes/20201219222415-material.org" "/Users/apple/Nextcloud/agenda/Idea.org" "/Users/apple/Nextcloud/agenda/Tips.org" "/Users/apple/Nextcloud/agenda/archived.org" "/Users/apple/Nextcloud/agenda/area.org" "/Users/apple/Nextcloud/agenda/inbox.org" "/Users/apple/Nextcloud/agenda/journal.org" "/Users/apple/Nextcloud/agenda/project.org" "/Users/apple/Nextcloud/agenda/resource.org" "/Users/apple/Nextcloud/agenda/task.org"))
  '(org-download-screenshot-method "screencapture -i %s")
  '(org-format-latex-options
    '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers

@@ -6,20 +6,20 @@ Content-Type: application/octet-stream
 Last-Modified: Sat, 19 Dec 2020 18:03:56 GMT
 Access-Control-Allow-Origin: *
 ETag: "5fde408c-323"
-Expires: Wed, 23 Dec 2020 14:29:58 GMT
+Expires: Fri, 25 Dec 2020 02:07:33 GMT
 Cache-Control: max-age=600
 X-Proxy-Cache: MISS
-X-GitHub-Request-Id: 6C00:7187:19C410E:1F2ABAF:5FE3520E
+X-GitHub-Request-Id: F0FA:7025:1CA9EFA:227F87B:5FE5470D
 Accept-Ranges: bytes
-Date: Wed, 23 Dec 2020 14:19:58 GMT
+Date: Fri, 25 Dec 2020 01:57:33 GMT
 Via: 1.1 varnish
 Age: 0
-X-Served-By: cache-hkg17928-HKG
+X-Served-By: cache-tyo19943-TYO
 X-Cache: MISS
 X-Cache-Hits: 0
-X-Timer: S1608733198.369781,VS0,VE231
+X-Timer: S1608861454.810794,VS0,VE186
 Vary: Accept-Encoding
-X-Fastly-Request-ID: 04ab4b3c43d3bc65ac34f187d1f8d193d305c55c
+X-Fastly-Request-ID: 899bf5ac08e768a0547a8a2bb9c08e351a2918a9
 
 # -*- mode: org; -*-
 

@@ -1,4 +1,3 @@
-(powerline-default-theme)
 
 (setq python-python-command "/opt/anaconda3/bin/python")
 

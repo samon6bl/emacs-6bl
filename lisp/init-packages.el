@@ -30,7 +30,6 @@
 			   elpy
 			   company-jedi
 			   flycheck
-			   powerline
 			   ;; --- Themes ---
 			   dracula-theme
 			   solarized-theme

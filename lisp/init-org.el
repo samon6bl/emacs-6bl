@@ -250,3 +250,5 @@
 (add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+(setq org-image-actual-width nil)
