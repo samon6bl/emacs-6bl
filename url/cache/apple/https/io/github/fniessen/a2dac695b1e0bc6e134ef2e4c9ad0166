@@ -1,25 +1,25 @@
 HTTP/1.1 200 OK
 Connection: keep-alive
 Content-Length: 803
-Server: GitHub.com
 Content-Type: application/octet-stream
+Server: GitHub.com
 Last-Modified: Sat, 19 Dec 2020 18:03:56 GMT
 Access-Control-Allow-Origin: *
 ETag: "5fde408c-323"
-Expires: Fri, 25 Dec 2020 02:07:33 GMT
+Expires: Tue, 05 Jan 2021 02:39:33 GMT
 Cache-Control: max-age=600
 X-Proxy-Cache: MISS
-X-GitHub-Request-Id: F0FA:7025:1CA9EFA:227F87B:5FE5470D
+X-GitHub-Request-Id: BF7A:38B5:167E321:1843DD3:5FF3CF0D
 Accept-Ranges: bytes
-Date: Fri, 25 Dec 2020 01:57:33 GMT
+Date: Tue, 05 Jan 2021 02:29:33 GMT
 Via: 1.1 varnish
 Age: 0
-X-Served-By: cache-tyo19943-TYO
+X-Served-By: cache-hnd18744-HND
 X-Cache: MISS
 X-Cache-Hits: 0
-X-Timer: S1608861454.810794,VS0,VE186
+X-Timer: S1609813774.683199,VS0,VE185
 Vary: Accept-Encoding
-X-Fastly-Request-ID: 899bf5ac08e768a0547a8a2bb9c08e351a2918a9
+X-Fastly-Request-ID: 9f2a41f8db5001ac813cbcd5b2926d30d43d8f65
 
 # -*- mode: org; -*-
 

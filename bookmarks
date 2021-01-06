@@ -3,10 +3,10 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/Nextcloud/roam notes/20201225092932-算法图解.org")
- (front-context-string)
+ (filename . "~/Nextcloud/roam notes/20210102135018-教育知识与能力.org")
+ (front-context-string . "#+title: 教育知识与能力")
  (rear-context-string . "ONS: toc:t \\n:t\n")
- (position . 195))
+ (position . 112))
 ("12.beancount"
  (filename . "~/Nextcloud/Account/txs/2020/12.beancount")
  (front-context-string)

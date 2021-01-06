@@ -1,5 +1,4 @@
-#+AUTHOR: "Samon"
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+AUTHOR: "Samon"cnf
 #+HUGO_SECTION:posts
 #+HUGO_BASE_DIR:~/blog/Samon's Blog
 #+KATEX: true
