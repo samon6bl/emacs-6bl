@@ -38,7 +38,7 @@
 (global-set-key (kbd "<f2>") 'open-init-file)
 
 (setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig")
-(setenv "PATH" "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/")
+(setenv "PATH" "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/:/opt/anaconda/bin/")
 
 (winner-mode +1)
 (define-key winner-mode-map (kbd "<M-left>") #'winner-undo)
@@ -86,5 +86,7 @@
   :config
   (define-auto-insert "\\.org?$" "default-org.org"))
 
+(setq url-using-proxy t)
+(setq url-proxy-services '(("http" . "127.0.0.1:8889")))
 
 (provide 'init-better-defaults)

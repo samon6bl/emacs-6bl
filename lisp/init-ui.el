@@ -16,15 +16,20 @@
 )
 (run-with-timer 0 3600 'synchronize-theme)
 
+;; 常显时间
+(display-time-mode 1)
 
 ;; 光标
 (setq-default cursor-type 'bar)
 
 ;; 关闭工具栏，tool-bar-mode 即为一个 Minor Mode
-(tool-bar-mode -1)
+(tool-bar-mode 0)
+
+;; 关闭菜单栏
+(menu-bar-mode 0)
 
 ;; 关闭文件滑动控件
-(scroll-bar-mode -1)
+(scroll-bar-mode 0)
 
 ;; 显示行号
 (global-linum-mode 1)
@@ -34,6 +39,16 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
+
+;(if (display-graphic-p) (dolist (charset '(kana han cjk-misc bopomofo))
+;   (set-fontset-font (frame-parameter nil 'font) charset
+;                     (font-spec :family "Sarasa Mono SC" :size 25))))
+
+;; emacs字体设置
+(let ((emacs-font-size 15)
+      (emacs-font-name "Sarasa Mono SC"))
+  (set-frame-font (format "%s-%s" (eval emacs-font-name) (eval emacs-font-size)))
+ (set-fontset-font (frame-parameter nil 'font) 'unicode (eval emacs-font-name)))
 
 ;; How tall the mode-line should be. It's only respected in GUI.
 ;; If the actual char height is larger, it respects the actual height.
@@ -191,5 +206,17 @@
 ;; Hooks that run before/after the modeline version string is updated
 (setq doom-modeline-before-update-env-hook nil)
 (setq doom-modeline-after-update-env-hook nil)
+
+
+;; Dried 美化
+(use-package diredfl
+  :ensure t
+  :config (diredfl-global-mode t))
+
+(use-package all-the-icons-dired
+  :ensure t
+  :config
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+
 
 (provide 'init-ui)

@@ -1,5 +1,5 @@
 
-(setq python-python-command "/opt/anaconda3/bin/python")
+(setq python-python-command "/opt/anaconda3/bin/python3.8")
 
 (use-package company-jedi
   :ensure t
@@ -26,7 +26,6 @@
   :ensure t
   :init
   (elpy-enable))
-
 
 
 

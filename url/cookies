@@ -2,7 +2,13 @@
 ;; Automatically generated file!!! DO NOT EDIT!!!
 
 (setq url-cookie-storage
- 'nil)
+ '((".mac52ipod.cn"
+  [url-cookie "__cfduid" "da263a893697eef144aaabee567ae621d1610202506" "Mon, 08-Feb-21 14:28:26 GMT" "/" ".mac52ipod.cn" nil])
+ ("www.mac52ipod.cn"
+  [url-cookie "filedownloaded" "%2C6592" "六 1月 09 16:28:51 2021 GMT" "/" "www.mac52ipod.cn" nil])
+ ("getpocket.com"
+  [url-cookie "AUTH_BEARER_default" "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJpYXQiOjE2MDkxNDM0ODgsImp0aSI6Im1QbDB5OGNRaGtyQzcwRDIyOWNjSUd1S3VsYVQ3MVNYZExnMG5Td1c0N3c9IiwiaXNzIjoiZ2V0cG9ja2V0LmNvbSIsIm5iZiI6MTYwOTE0MzQ4OCwiZXhwIjoxNjA5MTQ3MDg4LCJkYXRhIjoiX3NmMl9hdHRyaWJ1dGVzfGE6MDp7fV9zeW1mb255X2ZsYXNoZXN8YTowOnt9X3NmMl9tZXRhfGE6Mzp7czoxOlwidVwiO2k6MTYwOTE0MzQ4ODtzOjE6XCJjXCI7aToxNjA5MTQzMTg0O3M6MTpcImxcIjtzOjE6XCIwXCI7fSJ9.s_cbfREF2KQ7z6-6PGgM2OwTtUPdtVj2iiaW3reSccWqprIwLZ0PDAeOHbztrwhpKR25tC3X5xCFDtPqG7NIZEiwSelUa1c9z5vgHOlxh1FAh0OzLwmmIA8ScXf6FudSkswPrrsM5KnsNY3JXWljqtKoVgAxN3mj5gpd9bFMGQe-y59V_gV2V7P6lVZtwsr2MUIcl4nASsMKoBFEnFDkmjzwWbbhmWLVIe-KvXCX9EduIBbLates9mdFmGiiOtCW83jlq-35sk9r_O5OzdJjWbc9aelsJ9ys72QHHxFzLBygADweO1LO-Q-MDWQlJf3dZFVDOWH5rLCqOLWPCI06mA" "一 12月 28 09:18:13 2020 GMT" "/" "getpocket.com" nil]))
+)
 (setq url-cookie-secure-storage
  'nil)
 

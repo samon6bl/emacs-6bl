@@ -14,9 +14,6 @@
 	(message "Indent buffer.")))))
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
 
-;; icons for dried
-(use-package all-the-icons)
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 ; 开启全局 Company 补全
 (global-company-mode 1)

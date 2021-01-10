@@ -13,17 +13,6 @@
 (setq org-startup-indented t)
 
 
-;; 设置 todo keywords
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "DOING(i!)" "|" "DONE(d@/!)" "ABORT(a@/!)")))
-
-;; 调试好久的颜色，效果超赞！todo keywords 增加背景色
-(setf org-todo-keyword-faces '(("TODO" . (:foreground "white" :background "#95A5A6"   :weight bold))
-                                ("DOING" . (:foreground "white" :background "#2E8B57"  :weight bold))
-                                ("DONE" . (:foreground "white" :background "#3498DB" :weight bold))))
-
-
-
 (add-hook 'org-mode-hook
           (lambda ()
             (org-superstar-mode 1)))
@@ -32,39 +21,9 @@
 ;; This line is necessary.
 (setq org-superstar-leading-bullet ?\s)
 
-;; org-capture 
-(global-set-key (kbd "C-c c") 'org-capture)
-(setq org-capture-templates nil)
-(setq org-capture-templates
-             '(("t" "Task")
-	       ("td" "To-do task" entry 
-               (file+headline "~/Nextcloud/agenda/task.org" "Task List") 
-                "* TODO %^{Task}\n%t\n%?\n")
-	       ("tp" "tips" entry
-	       (file+headline "~/Nextcloud/agenda/Tips.org" "Tips")
-	       "* %? %^G\nEnered on %T\n")
-	       ("r" "Resourcee")
-	       ("ra" "Resource" table-line
-		(file+headline "~/Nextcloud/agenda/inbox.org" "Resource")
-		"|%^{Title}|%^{Category}|%^{Method}|%^C|" :kill-buffer t)
-	       ("rl" "To reading list" table-line
-		(file+headline "~/Nextcloud/agenda/resource.org" "Reading list")
-		"|%^{Tile}|%^{Author}|%^{Category}|%^{Score}|%^{When to read}|" :kill-buffer t)
-	       ("j" "Journal" entry
-	       (file+datetree "~/Nextcloud/agenda/journal.org")
-                "* %?\nEntered on %U\n%i\n")
-	       ("i" "Idea" entry
-	       (file+headline "~/Nextcloud/agenda/Idea.org" "Idea")
-	        "* %^{Idea}\nEnered on%T\n%?\n")
-	       ("n" "Note" entry
-	       (file+headline "~/Nextcloud/agenda/inbox.org" "Notes")
-	       "* %^{Note}\n%?\nEnered on%U\n%a")
-	       ("w" "Web site" entry
-               (file+headline "~/Nextcloud/roam notes/20201219222415-material.org" "Material")
-               "* %a :website:\n\n%U %?\n\n%:initial")))
 
 
-(setq org-refile-targets (quote (("project.org" :maxlevel . 2)                                             
+(setq org-refile-targets (quote (("project.org" :maxlevel . 2) 
                                  ("area.org" :maxlevel . 2)
 				 ("archived.org" :maxlevel . 2)
 				 ("task.org" :maxlevel . 2)
@@ -87,7 +46,7 @@
 	      (("C-c n t" . org-roam-dailies-today))
 	      (("C-c n c" . org-roam-dailies-capture-today))))
 (setq org-roam-server-host "127.0.0.1"
-      org-roam-server-port 9090
+      org-roam-server-port 9091
       org-roam-server-export-inline-images t
       org-roam-server-authenticate nil
       org-roam-server-network-label-truncate t
@@ -105,25 +64,23 @@
                :immediate-finish t
                :unnarrowed t))
 (setq org-roam-dailies-directory "~/Nextcloud/roam notes/Daily/")
-(setq org-roam-dailies-capture-templates
-      '(("l" "lab" entry
-         #'org-roam-capture--get-point
-         "* %?"
-         :file-name "~/Nextcloud/roam notes/Daily/%<%Y-%m-%d>"
-         :head "#+title: %<%Y-%m-%d>\n"
-         :olp ("Lab notes"))
-        ("j" "journal" entry
-         #'org-roam-capture--get-point
-         "* %?"
-         :file-name "~/Nextcloud/roam notes/Daily/%<%Y-%m-%d>"
-         :head "#+title: %<%Y-%m-%d>\n"
-         :olp ("journal"))))
+
+(use-package org-pretty-tags
+  :demand t
+  :config
+  (setq org-pretty-tags-surrogate-strings
+        (quote
+         (("Note" . "✍")
+          ("Task" . "")
+	  ("Event" . "")
+	  )))
+  (org-pretty-tags-global-mode))
 
 ;;设置归档目录和headline
 (setq org-archive-location "~/Nextcloud/agenda/archived.org::date-tree")
 (with-eval-after-load 'org
   ;; ... bunch of other org configurations ...
-  ;; Org-transclusion
+ ;; Org-transclusion
   (define-key global-map (kbd "<f12>") #'org-transclusion-mode))
 
 ;; ... other configurations ...
@@ -135,31 +92,10 @@
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 (setq org-latex-compiler "xelatex")
 
-
-
-(use-package org-pdftools  :hook (org-mode . org-pdftools-setup-link))
-
-(use-package org-noter-pdftools
-  :after org-noter
-  :config
-  (with-eval-after-load 'pdf-annot
-    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
-
 (use-package org-noter
   :after org
   :ensure t)
 
-(use-package pdf-tools
-   :pin manual
-   :config
-   (pdf-tools-install)
-   (setq-default pdf-view-display-size 'fit-width)
-   (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
-   :custom
-   (pdf-annot-activate-created-annotations t "automatically annotate highlights"))
-
-
-(add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
 
 ;; 支持中文加粗
 (setcar (nthcdr 0 org-emphasis-regexp-components) " \t('\"{[:nonascii:]")
@@ -173,12 +109,10 @@
 (setq org-emphasis-alist
       (cons '("*" '(:emphasis t :foreground "pink"))
             (delete* "*" org-emphasis-alist :key 'car :test 'equal)))
-(setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org"))
+(setq rmh-elfeed-org-files (list "~/Nextcloud/agenda/elfeed.org"))
 
 (require 'elfeed-org)
-(setq elfeed-feeds
-      '("https://iseex.github.io/feed.xml"
-	"https://www.douban.com/feed/review/movie"))
+
 (global-set-key (kbd "C-x w") 'elfeed)
 (elfeed-org)
 
@@ -204,19 +138,13 @@
         (("C-c D" . org-download-screenshot)
          ("C-c d" . org-download-clipboard))))
 
-;; emacs字体设置
-(let ((emacs-font-size 16)
-      (emacs-font-name "Sarasa Mono SC"))
-  (set-frame-font (format "%s-%s" (eval emacs-font-name) (eval emacs-font-size)))
-  (set-fontset-font (frame-parameter nil 'font) 'unicode (eval emacs-font-name)))
-
 (global-set-key (kbd "C-c l") 'org-store-link)
 
 (with-eval-after-load 'org
   (defun org-buffer-face-mode-variable ()
     (interactive)
     (make-face 'width-font-face)
-    (set-face-attribute 'width-font-face nil :font "Sarasa Mono SC")
+    (set-face-attribute 'width-font-face nil :font "Sarasa Mono SC Nerd")
     (setq buffer-face-mode-face 'width-font-face)
     (buffer-face-mode))
 
@@ -252,3 +180,33 @@
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 (setq org-image-actual-width nil)
+
+(defvar dynamic-agenda-files nil
+  "dynamic generate agenda files list when changing org state")
+
+(defun update-dynamic-agenda-hook ()
+  (let ((done (or (not org-state) ;; nil when no TODO list
+                  (member org-state org-done-keywords)))
+        (file (buffer-file-name))
+        (agenda (funcall (ad-get-orig-definition 'org-agenda-files)) ))
+    (unless (member file agenda)
+      (if done
+          (save-excursion
+            (goto-char (point-min))
+            ;; Delete file from dynamic files when all TODO entry changed to DONE
+            (unless (search-forward-regexp org-not-done-heading-regexp nil t)
+              (customize-save-variable
+               'dynamic-agenda-files
+               (cl-delete-if (lambda (k) (string= k file))
+                             dynamic-agenda-files))))
+        ;; Add this file to dynamic agenda files
+        (unless (member file dynamic-agenda-files)
+          (customize-save-variable 'dynamic-agenda-files
+                                   (add-to-list 'dynamic-agenda-files file)))))))
+
+(defun dynamic-agenda-files-advice (orig-val)
+  (union orig-val dynamic-agenda-files :test #'equal))
+
+(advice-add 'org-agenda-files :filter-return #'dynamic-agenda-files-advice)
+(add-to-list 'org-after-todo-state-change-hook 'update-dynamic-agenda-hook t)
+

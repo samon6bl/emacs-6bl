@@ -51,20 +51,22 @@
 			   org-roam-server
 			   org-super-agenda
 			   helm-org-rifle
-                           define-word
+			   pocket-reader
 			   deft
+			   org-pdftools
 			   org-noter
+			   auctex
 			   let-alist
 			   tablist
-			   org-pdftools
-			   org-noter-pdftools
 			   org-superstar
+			   elfeed
 			   elfeed-org
 			   youdao-dictionary
 			   helm
 			   ox-pandoc
 			   ox-hugo
 			   esup
+			   org-pretty-tags
 			   )"Default packages")
 ;; ...
 

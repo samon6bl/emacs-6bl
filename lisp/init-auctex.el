@@ -1,4 +1,3 @@
-
 (load "auctex.el" nil t t)
 
 ;; 如果需要预览 latex，则去掉下面这行前面的注释
@@ -17,6 +16,9 @@
 	(add-hook 'LaTeX-mode-hook mode))
       (list 'LaTeX-math-mode
             'turn-on-reftex))
+
+(eval-when-compile (and (featurep 'dbusbind)
+            (require 'dbus nil :no-error)))
 
 ;; 作 LaTeX 相关设定
 (add-hook 'LaTeX-mode-hook
