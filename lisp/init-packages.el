@@ -54,6 +54,7 @@
 			   pocket-reader
 			   deft
 			   org-pdftools
+			   pdf-tools
 			   org-noter
 			   auctex
 			   let-alist
@@ -67,6 +68,12 @@
 			   ox-hugo
 			   esup
 			   org-pretty-tags
+			   which-key
+			   undo-tree
+			   anki-editor
+			   nov
+			   avy
+			   centaur-tabs
 			   )"Default packages")
 ;; ...
 

@@ -3,8 +3,8 @@
 (global-hl-line-mode 1)
 
 ;; 日夜自动切换主题
-(setq day-theme 'moe-light)
-(setq dark-theme 'moe-dark)
+(setq day-theme 'tango)
+(setq dark-theme 'doom-gruvbox)
 (defun synchronize-theme ()
     (setq hour
         (string-to-number
@@ -48,7 +48,8 @@
 (let ((emacs-font-size 15)
       (emacs-font-name "Sarasa Mono SC"))
   (set-frame-font (format "%s-%s" (eval emacs-font-name) (eval emacs-font-size)))
- (set-fontset-font (frame-parameter nil 'font) 'unicode (eval emacs-font-name)))
+  (set-fontset-font (frame-parameter nil 'font) 'unicode (eval emacs-font-name)))
+
 
 ;; How tall the mode-line should be. It's only respected in GUI.
 ;; If the actual char height is larger, it respects the actual height.

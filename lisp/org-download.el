@@ -367,8 +367,12 @@ COMMAND is a format-style string with two slots for LINK and FILENAME."
 (defun org-download-yank ()
   "Call `org-download-image' with current kill."
   (interactive)
-  (org-download-image
-   (replace-regexp-in-string "\n+$" "" (current-kill 0))))
+  (let ((k (current-kill 0)))
+    (unless (url-type (url-generic-parse-url k))
+      (user-error "Not a URL: %s" k))
+    (org-download-image
+     (replace-regexp-in-string
+      "\n+$" "" k))))
 
 (defun org-download-screenshot (&optional basename)
   "Capture screenshot and insert the resulting file.
@@ -502,7 +506,7 @@ It's inserted before the image link and is used to annotate it.")
   (interactive "sUrl: ")
   (let* ((link-and-ext (org-download--parse-link link))
          (filename
-          (cond ((eq org-download-method 'attach)
+          (cond ((and (eq major-mode 'org-mode) (eq org-download-method 'attach))
                  (let ((org-download-image-dir (org-attach-dir t))
                        org-download-heading-lvl)
                    (apply #'org-download--fullname link-and-ext)))
@@ -710,4 +714,5 @@ Otherwise, pass URI and ACTION back to dnd dispatch."
 (org-download-enable)
 
 (provide 'org-download)
+
 ;;; org-download.el ends here

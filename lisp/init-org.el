@@ -22,13 +22,14 @@
 (setq org-superstar-leading-bullet ?\s)
 
 
-
 (setq org-refile-targets (quote (("project.org" :maxlevel . 2) 
                                  ("area.org" :maxlevel . 2)
 				 ("archived.org" :maxlevel . 2)
 				 ("task.org" :maxlevel . 2)
 				 ("journal.org" :maxlevel . 2)
 				 ("inbox.org" :maxlevel . 2))))
+(setq org-ellipsis "▼")
+;(custom-set-faces '(org-ellipsis ((t (:foreground "red5" :underline nil)))))
 ;; Org-roam
 (use-package org-roam
       :ensure t
@@ -109,12 +110,32 @@
 (setq org-emphasis-alist
       (cons '("*" '(:emphasis t :foreground "pink"))
             (delete* "*" org-emphasis-alist :key 'car :test 'equal)))
-(setq rmh-elfeed-org-files (list "~/Nextcloud/agenda/elfeed.org"))
 
-(require 'elfeed-org)
 
-(global-set-key (kbd "C-x w") 'elfeed)
-(elfeed-org)
+;; use an org file to organise feeds
+(use-package elfeed-org
+  :ensure t
+  :config
+  (elfeed-org)
+  (setq rmh-elfeed-org-files (list "~/Nextcloud/agenda/elfeed.org"))
+  (global-set-key (kbd "C-x w") 'elfeed))
+
+
+;;functions to support syncing .elfeed between machines
+;;makes sure elfeed reads index from disk before launching
+(defun bjm/elfeed-load-db-and-open ()
+  "Wrapper to load the elfeed db from disk before opening"
+  (interactive)
+  (elfeed-db-load)
+  (elfeed)
+  (elfeed-search-update--force))
+
+;;write to disk when quiting
+(defun bjm/elfeed-save-db-and-bury ()
+  "Wrapper to save the elfeed db to disk before burying buffer"
+  (interactive)
+  (elfeed-db-save)
+  (quit-window))
 
 (setq org-html-inline-image-rules
       '(
@@ -127,10 +148,14 @@
 (auto-image-file-mode t) 
 
 
-;; Drag-and-drop to `dired`
 
+
+;; Drag-and-drop to `dired`
 (add-hook 'dired-mode-hook 'org-download-enable)
-(setq-default org-download-image-dir "~/Pictures/org/")
+(setq-default org-download-image-dir "~/Pictures/org")
+(setq-default org-download-heading-lvl nil)
+(setq-default org-download-backend "wget")
+(setq org-download-screenshot-method "scrot -s -e 'xclip -selection clipboard -t "image/png" < $f'")
 (use-package org-download
   :after org
   :bind

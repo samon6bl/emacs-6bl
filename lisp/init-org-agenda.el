@@ -16,9 +16,12 @@
 (setq org-capture-templates nil)
 (setq org-capture-templates
              '(("t" "Task")
-	       ("td" "Today task" entry 
+	       ("tt" "Today task" entry 
                (file+headline "~/Nextcloud/agenda/Task.org" "Task List") 
-                "* TODAY %^{Task}\n%?\n")
+               "* TODAY %^{Task}\n%?\n")
+	       ("td" "Todo task" entry 
+               (file+headline "~/Nextcloud/agenda/Task.org" "Task List") 
+                "* TODO %^{Task}\n%?\n")
 	       ("tp" "tips" entry
 	       (file+headline "~/Nextcloud/agenda/Tips.org" "Tips")
 	       "* %? %^G\nEnered on %T\n")
@@ -33,7 +36,7 @@
                "* %a :website:\n\n%U %?\n\n%:initial")))
 
 (setq org-roam-dailies-capture-templates
-      '(("n" "notes" plain
+      '(("n" "notes" entry
          #'org-roam-capture--get-point
          "* %?   :note:"
          :file-name "~/Nextcloud/roam notes/Daily/%<%Y-%m-%d>"
@@ -48,19 +51,19 @@
 	("t" "task" entry
 	 #'org-roam-capture--get-point
 	 "* %? :task:"
-	 ::file-name "~/Nextcloud/roam notes/Daily/%<%Y-%m-%d>"
+	 :file-name "~/Nextcloud/roam notes/Daily/%<%Y-%m-%d>"
          :head "#+title: %<%Y-%m-%d>\n"
          :olp ("Task"))
-	 ("h" "Tickler"
+	 ("h" "Tickler" entry
 	   "* %?"
           #'org-roam-capture--get-point
-	  ::file-name "~/Nextcloud/roam notes/Daily/%<%Y-%m-%d>"
+	  :file-name "~/Nextcloud/roam notes/Daily/%<%Y-%m-%d>"
           :head "#+title: %<%Y-%m-%d>\n"
           :olp ("Task"))
-	 ("d" "diary"
+	 ("d" "diary" entry
 	  #'org-roam-capture--get-point
 	  "* %?"
-	  ::file-name "~/Nextcloud/roam notes/Daily/%<%Y-%m-%d>"
+	  :file-name "~/Nextcloud/roam notes/Daily/%<%Y-%m-%d>"
           :head "#+title: %<%Y-%m-%d>\n"
           :olp ("Diary"))))
 

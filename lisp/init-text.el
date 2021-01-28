@@ -102,3 +102,16 @@
   (yas-global-mode 1)
   :config
   (add-to-list 'yas-snippet-dirs (locate-user-emacs-file "~/.emacs.d/snippets")))
+
+; avy的简单配置
+(avy-setup-default)
+(global-set-key (kbd "C-c C-j") 'avy-resume)
+(global-set-key (kbd "C-:") 'avy-goto-char)
+(global-set-key (kbd "C-'") 'avy-goto-char-2)
+(global-set-key (kbd "M-g f") 'avy-goto-line)
+(global-set-key (kbd "M-g w") 'avy-goto-word-1)
+(global-set-key (kbd "M-g e") 'avy-goto-word-0)
+
+
+
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))

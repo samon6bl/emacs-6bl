@@ -21,3 +21,8 @@
  '(TeX-source-correlate-method 'synctex)
  '(TeX-source-correlate-mode t)
  '(TeX-source-correlate-start-server t))
+
+(setq org-latex-packages-alist
+             '(("fontset=macnew,UTF8" "ctex" t)))
+
+
